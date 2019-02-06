@@ -370,5 +370,49 @@
       "restaurantId": "tasty-treats"
     }
   ],
-  "orders": []
+  "orders": [
+    {
+      "address": "QNP 32",
+      "number": "9",
+      "optionalAddress": "CASA",
+      "paymentOption": "MON",
+      "orderItems": [
+        {
+          "quantity": 1,
+          "menuId": "cup-cake"
+        },
+        {
+          "quantity": 1,
+          "menuId": "donut"
+        }
+      ],
+      "id": 1
+    },
+    {
+      "address": "Avenida Drumond",
+      "number": "100",
+      "optionalAddress": "Ap",
+      "paymentOption": "REF",
+      "orderItems": [
+        {
+          "quantity": 1,
+          "menuId": "capp"
+        }
+      ],
+      "id": 2
+    },
+    {
+      "address": "QNB 11",
+      "number": "37",
+      "optionalAddress": "CASA",
+      "paymentOption": "CRED",
+      "orderItems": [
+        {
+          "quantity": 1,
+          "menuId": "burger"
+        }
+      ],
+      "id": 3
+    }
+  ]
 }

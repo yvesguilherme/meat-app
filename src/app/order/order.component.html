@@ -4,10 +4,7 @@
 
 <section class="content">
   <section class="invoice">
-
-    {{form.valid}}
-    {{form.value | json}}
-
+    
     <form #form="ngForm" novalidate>
       <div class="row">
         <div class="col-xs-12">
@@ -29,13 +26,13 @@
         </div>
         <div class="col-sm-3 col-xs-6">
           <mt-input-container errorMessage="Campo obrigatório e somente números">
-            <input type="text" class="form-control" name="number" pattern="^[0-9]*$" required ngModel placeholder="Número"
-              autocomplete="off">
+            <input type="text" class="form-control" name="number" pattern="^[0-9]*$" required ngModel
+              placeholder="Número" autocomplete="off">
           </mt-input-container>
         </div>
         <div class="col-sm-3 col-xs-6">
           <mt-input-container>
-            <input type="text" class="form-control" name="optional" ngModel placeholder="Complemento">
+            <input type="text" class="form-control" name="optionalAddress" ngModel placeholder="Complemento">
           </mt-input-container>
         </div>
         <!-- /.col -->
@@ -71,7 +68,7 @@
           <p class="lead">Frete e Total:</p>
 
           <mt-delivery-costs [delivery]="delivery" [itemsValue]="itemsValue()"></mt-delivery-costs>
-          
+
         </div>
         <!-- /.col -->
       </div>
@@ -80,7 +77,8 @@
 
     <div class="row">
       <div class="col-xs-12">
-        <button class="btn btn-success pull-right" [disabled]="!form.valid || cartItems().length === 0"><i class="fa fa-credit-card"></i> Concluir
+        <button (click)="checkOrder(form.value)" class="btn btn-success pull-right"
+          [disabled]="!form.valid || cartItems().length === 0"><i class="fa fa-credit-card"></i> Concluir
           Pedido
         </button>
       </div>

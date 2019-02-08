@@ -17,7 +17,6 @@ import { MenuItemComponent } from './restaurant-detail/menu-item/menu-item.compo
 import { ReviewsComponent } from './restaurant-detail/reviews/reviews.component';
 import { OrderSummaryComponent } from './order-summary/order-summary.component';
 import { SharedModule } from './shared/shared.module';
-import { CoreModule } from './core/core.module';
 
 
 @NgModule({
@@ -37,8 +36,7 @@ import { CoreModule } from './core/core.module';
   imports: [
     BrowserModule,
     HttpModule,
-    SharedModule,
-    CoreModule,
+    SharedModule.forRoot(),
     RouterModule.forRoot(ROUTES)
   ],
   providers: [

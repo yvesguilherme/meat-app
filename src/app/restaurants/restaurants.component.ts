@@ -6,6 +6,9 @@ import { Restaurant } from './restaurant/restaurant.model';
 import { RestaurantService } from './restaurants.service';
 
 import 'rxjs/add/operator/switchMap';
+import 'rxjs/add/operator/do';
+import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/distinctUntilChanged';
 
 @Component({
   selector: 'mt-restaurants',
@@ -38,6 +41,15 @@ export class RestaurantsComponent implements OnInit {
     });
 
     this.searchControl.valueChanges
+      /** Espera 450ms entre 2 eventos. */
+      .debounceTime(450)
+      /** Emite somente eventos únicos. */
+      .distinctUntilChanged()
+      /**
+       * Troca a cadeia e ao invés de emitir
+       * para frente o searchTerm, troca por
+       * Observable de restaurants
+       */
       .switchMap(searchTerm => this.restaurantsService.restaurants(searchTerm))
       .subscribe(restaurants => this.restaurants = restaurants);
 

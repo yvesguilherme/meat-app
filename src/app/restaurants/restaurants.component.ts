@@ -5,10 +5,13 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Restaurant } from './restaurant/restaurant.model';
 import { RestaurantService } from './restaurants.service';
 
+import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/observable/from';
 
 @Component({
   selector: 'mt-restaurants',
@@ -50,7 +53,11 @@ export class RestaurantsComponent implements OnInit {
        * para frente o searchTerm, troca por
        * Observable de restaurants
        */
-      .switchMap(searchTerm => this.restaurantsService.restaurants(searchTerm))
+      .switchMap(
+        searchTerm => this.restaurantsService
+          .restaurants(searchTerm)
+          .catch(error => Observable.from([]))
+      )
       .subscribe(restaurants => this.restaurants = restaurants);
 
     this.restaurantsService.restaurants()

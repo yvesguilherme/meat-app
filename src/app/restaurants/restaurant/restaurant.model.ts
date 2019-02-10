@@ -5,6 +5,8 @@ export interface Restaurant {
   deliveryEstimate: string;
   rating: number;
   imagePath: string;
+  hours?: string;
+  about?: string;
 
 
   // "id": "burger-house",

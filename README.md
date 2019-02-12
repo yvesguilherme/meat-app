@@ -86,6 +86,18 @@ Dependências dos pacotes que devem ficar em package.json:
   }
 ```
 
+## Compilando o Typescript da pasta backend
+
+`tsc -w`
+
+## Startando back-end com o node
+
+`node backend\dist\server`
+
+## Startando nodemon
+
+`nodemon --watch backend backend\dist\server.js`
+
 ## Upgrade para Angular 6 (Apenas para a aulas finais)
 
 Dependências dos pacotes que devem ficar em package.json:

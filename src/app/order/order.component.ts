@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { RadioOption } from 'app/shared/radio/radio-option.model';
 import { OrderService } from './order.service';
 import { CartItem } from 'app/restaurant-detail/shopping-cart/cart-item.model';
 import { Order, OrderItem } from './order.model';
-import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
+
+import 'rxjs/add/operator/do';
 
 @Component({
   selector: 'mt-order',
@@ -17,6 +19,7 @@ export class OrderComponent implements OnInit {
   numberPattern = /^[0-9]*$/;
   orderForm: FormGroup;
   delivery = 8;
+  orderId: string;
 
   paymentOptions: RadioOption[] = [
     { label: 'Dinheiro', value: 'MON' },
@@ -80,16 +83,21 @@ export class OrderComponent implements OnInit {
     this.orderService.remove(item);
   };
 
+  isOrderCompleted(): boolean {
+    return this.orderId !== undefined;
+  };
+
   checkOrder(order: Order) {
     order.orderItems = this.cartItems()
       .map((item: CartItem) => new OrderItem(item.quantity, item.menuItem.id));
+
     this.orderService
       .checkOrder(order)
+      .do((orderId: string) => this.orderId = orderId)
       .subscribe((orderId: string) => {
         this.router.navigate(['/order-summary']);
         this.orderService.clear();
       });
-    console.log(order);
   };
 
 }

@@ -18,8 +18,11 @@ import 'core-js/es6/reflect';
 import 'core-js/es7/reflect';
 import 'zone.js/dist/zone';
 
-/** Adicionando Localização pt-BR */
-import 'intl';
-import 'intl/locale-data/jsonp/pt-BR.js';
+/**
+ * VERSÕES ANTERIORES AO ANGULAR 5
+ * Adicionando Localização pt-BR
+ */
+// import 'intl';
+// import 'intl/locale-data/jsonp/pt-BR.js';
 
 import 'web-animations-js/web-animations.min.js';

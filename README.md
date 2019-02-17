@@ -154,6 +154,10 @@ Dependências dos pacotes que devem ficar em package.json:
   }
 ```
 
+## Resolver os problemas de css ao gerar o build
+
+`ng build --prod --extract-css=false`
+
 ## Créditos
 
 Todas as imagens usadas na aplicação são pertencentes a freepik.com
